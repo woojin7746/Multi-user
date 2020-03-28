@@ -20,15 +20,18 @@
   },
   "homepage": "https://github.com/web-n/Nodejs#readme",
   "dependencies": {
+    "bcrypt": "^4.0.1",
     "body-parser": "^1.18.3",
     "compression": "^1.7.2",
     "connect-flash": "^0.1.1",
     "express": "^4.16.3",
     "express-session": "^1.17.0",
     "helmet": "^3.12.1",
+    "lowdb": "^1.0.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "sanitize-html": "^1.18.2",
-    "session-file-store": "^1.4.0"
+    "session-file-store": "^1.4.0",
+    "shortid": "^2.2.15"
   }
 }

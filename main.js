@@ -8,6 +8,7 @@ var session = require("express-session");
 var FileStore = require("session-file-store")(session);
 app.use(helmet());
 var flash = require("connect-flash");
+var db = require("./lib/db");
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -17,8 +18,8 @@ app.use(
   session({
     secret: "keyboard cat",
     resave: false,
-    saveUninitialized: true
-    // store: new FileStore()
+    saveUninitialized: true,
+    store: new FileStore()
   })
 );
 
@@ -31,10 +32,8 @@ var topicRouter = require("./routes/topic");
 var authRouter = require("./routes/auth")(passport);
 
 app.get("*", function(request, response, next) {
-  fs.readdir("./data", function(error, filelist) {
-    request.list = filelist;
-    next();
-  });
+  request.list = db.get("topics").value();
+  next();
 });
 
 app.use("/", indexRouter);
